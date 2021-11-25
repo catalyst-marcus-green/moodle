@@ -371,4 +371,31 @@ abstract class base {
 
         return $this->conditions[$name];
     }
+
+    /**
+     * Adds a column to the report that is selectable and usable for bulk actions.
+     *
+     * @param string $tablealias
+     */
+    public function add_selectable_column($tablealias) {
+        global $OUTPUT;
+        $column = new column(
+            'id',
+            $OUTPUT->render(new \core\output\checkbox_toggleall('reportbuilder-select', true, [], false)),
+            $this->get_entity_name());
+        $column->set_is_sortable(false);
+        $column->add_field("$tablealias.id");
+        $column->add_callback(static function ($value) {
+            return \html_writer::empty_tag('input', array(
+                'type' => 'checkbox',
+                'name' => 'reportbuilder-select',
+                'class' => 'reportbuilder-checkbox',
+                'data-id' => $value,
+                'data-togglegroup' => 'reportbuilder-select',
+                'data-action' => 'toggle',
+                'data-toggle' => 'slave',
+            ));
+        });
+        $this->add_column($column);
+    }
 }

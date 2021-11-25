@@ -31,7 +31,8 @@
         }],
         "table": "table",
         "filterspresent": true,
-        "filtersform": "form"
+        "filtersform": "form",
+        "actionbuttons": []
     }
 }}
 <div class="reportbuilder-report {{classes}}"
@@ -49,12 +50,21 @@
                 {{! Table }}
                 <div class="mt-2">
                     {{{table}}}
+                    {{! Create action buttons }}
+                    {{#actionbuttons}}
+                        <input
+                                type="submit"
+                                id="action-button-{{id}}"
+                                class="btn btn-secondary"
+                                data-module="{{module}}"
+                                value="{{value}}">
+                    {{/actionbuttons}}
                 </div>
             </div>
 </div>
-
 {{#js}}
-    require(['core_reportbuilder/report'], function(report) {
+    require(['core_reportbuilder/report', 'core_reportbuilder/action_buttons'], function(report, action_buttons) {
         report.init();
+        action_buttons.init();
     });
 {{/js}}

@@ -93,6 +93,9 @@ abstract class base {
     /** @var lang_string $noresultsnotice */
     private $noresultsnotice;
 
+    /** @var array $actionbuttons */
+    private $actionbuttons = [];
+
     /**
      * Base report constructor
      *
@@ -755,6 +758,24 @@ abstract class base {
      */
     final public function get_downloadfilename(): string {
         return $this->downloadfilename;
+    }
+
+    /**
+     * Add an action button to the report.
+     *
+     * @param $button array
+     */
+    final public function add_action_button(array $button) {
+        $this->actionbuttons[] = $button;
+    }
+
+    /**
+     * Return the array of action buttons.
+     *
+     * @return array
+     */
+    final public function get_action_buttons(): array {
+        return $this->actionbuttons;
     }
 
     /**

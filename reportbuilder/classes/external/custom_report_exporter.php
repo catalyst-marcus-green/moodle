@@ -123,6 +123,15 @@ class custom_report_exporter extends persistent_exporter {
                 'optional' => true,
             ],
             'javascript' => ['type' => PARAM_RAW],
+            'actionbuttons' => [
+                'type' => [
+                    'id' => ['type' => PARAM_TEXT],
+                    'value' => ['type' => PARAM_TEXT],
+                    'module' => ['type' => PARAM_TEXT]
+                ],
+                'multiple' => true,
+                'optional' => true
+            ],
         ];
     }
 
@@ -196,6 +205,7 @@ class custom_report_exporter extends persistent_exporter {
             'classes' => $classes ?? '',
             'editmode' => $this->editmode,
             'javascript' => '',
+            'actionbuttons' => isset($datasource) ? $datasource->get_action_buttons() : [],
         ] + $editordata;
     }
 

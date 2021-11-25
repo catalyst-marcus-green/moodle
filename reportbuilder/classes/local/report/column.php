@@ -58,7 +58,7 @@ final class column {
     /** @var string $columnname Internal reference to name of column */
     private $columnname;
 
-    /** @var lang_string $columntitle Used as a title for the column in reports */
+    /** @var lang_string|string $columntitle Used as a title for the column in reports */
     private $columntitle;
 
     /** @var bool $hascustomcolumntitle Used to store if the column has been given a custom title */
@@ -124,12 +124,12 @@ final class column {
      *    ->add_callback([format::class, 'format_string']));
      *
      * @param string $name Internal name of the column
-     * @param lang_string|null $title Title of the column used in reports (null for blank)
+     * @param lang_string|string|null $title Title of the column used in reports (null for blank)
      * @param string $entityname Name of the entity this column belongs to. Typically when creating columns within entities
      *      this value should be the result of calling {@see get_entity_name}, however if creating columns inside reports directly
      *      it should be the name of the entity as passed to {@see \core_reportbuilder\local\report\base::annotate_entity}
      */
-    public function __construct(string $name, ?lang_string $title, string $entityname) {
+    public function __construct(string $name, $title, string $entityname) {
         $this->columnname = $name;
         $this->columntitle = $title;
         $this->entityname = $entityname;
@@ -158,10 +158,10 @@ final class column {
     /**
      * Set column title
      *
-     * @param lang_string|null $title
+     * @param lang_string|string|null $title
      * @return self
      */
-    public function set_title(?lang_string $title): self {
+    public function set_title($title): self {
         $this->columntitle = $title;
         $this->hascustomcolumntitle = true;
         return $this;

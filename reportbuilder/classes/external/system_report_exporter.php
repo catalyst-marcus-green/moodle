@@ -78,6 +78,15 @@ class system_report_exporter extends persistent_exporter {
                 'multiple' => true,
             ],
             'classes' => ['type' => PARAM_TEXT],
+            'actionbuttons' => [
+                'type' => [
+                    'id' => ['type' => PARAM_TEXT],
+                    'value' => ['type' => PARAM_TEXT],
+                    'module' => ['type' => PARAM_TEXT]
+                ],
+                'multiple' => true,
+                'optional' => true
+            ],
         ];
     }
 
@@ -135,6 +144,7 @@ class system_report_exporter extends persistent_exporter {
             'filtersform' => $filterspresent ? $filtersform->render() : '',
             'attributes' => $attributes,
             'classes' => $classes ?? '',
+            'actionbuttons' => $source->get_action_buttons(),
         ];
     }
 }
