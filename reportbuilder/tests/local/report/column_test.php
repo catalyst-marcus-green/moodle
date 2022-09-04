@@ -547,6 +547,20 @@ class column_test extends advanced_testcase {
     }
 
     /**
+     * Test for is_downloadable
+     */
+    public function test_is_downloadable(): void {
+        $column = $this->create_column('test');
+        $this->assertTrue($column->get_is_downloadable());
+
+        $column->set_is_downloadable(true);
+        $this->assertTrue($column->get_is_downloadable());
+
+        $column->set_is_downloadable(false);
+        $this->assertFalse($column->get_is_downloadable());
+    }
+
+    /**
      * Helper method to create a column instance
      *
      * @param string $name

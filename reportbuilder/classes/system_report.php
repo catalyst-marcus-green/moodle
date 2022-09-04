@@ -306,16 +306,6 @@ abstract class system_report extends base {
     }
 
     /**
-     * Return list of column names that will be excluded when table is downloaded. Extending classes should override this method
-     * as appropriate
-     *
-     * @return string[] Array of column unique identifiers
-     */
-    public function get_exclude_columns_for_download(): array {
-        return [];
-    }
-
-    /**
      * Set initial sort column and sort direction for the report
      *
      * @param string $uniqueidentifier

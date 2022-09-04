@@ -278,4 +278,18 @@ class base_test extends advanced_testcase {
         $persistent = $systemreport->get_report_persistent();
         $this->assertEquals(system_report_available::class, $persistent->get('source'));
     }
+
+    /**
+     * Test for get_exclude_columns_for_download
+     */
+    public function test_get_exclude_columns_for_download(): void {
+        $this->resetAfterTest();
+
+        $systemreport = system_report_factory::create(system_report_available::class, context_system::instance());
+        $this->assertEmpty($systemreport->get_exclude_columns_for_download());
+
+        $column = $systemreport->get_column('user:username');
+        $column->set_is_downloadable(false);
+        $this->assertNotEmpty($systemreport->get_exclude_columns_for_download());
+    }
 }

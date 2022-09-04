@@ -8,6 +8,10 @@ Information provided here is intended especially for developers.
   appending additional string to the generated value
 * New report filter types:
   - `filesize` for reports containing filesize data
+* `set_is_downloadable` and `get_is_downloadable` methods have been added to \local\report\column class, used to
+   remove columns from report download.
+* Moved `get_exclude_columns_for_download` method from system report to \local\report\base class, updated to
+   use `get_is_downloadable` method from \local\report\column class.
 
 === 4.3 ===
 

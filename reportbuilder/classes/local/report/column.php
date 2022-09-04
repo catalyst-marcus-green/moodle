@@ -100,6 +100,9 @@ final class column {
     /** @var array $attributes */
     private $attributes = [];
 
+    /** @var bool $isdownloadable Used to indicate if a column is included in a report download */
+    private $isdownloadable = true;
+
     /** @var bool $available Used to know if column is available to the current user or not */
     protected $available = true;
 
@@ -720,6 +723,26 @@ final class column {
      */
     public function get_attributes(): array {
         return $this->attributes;
+    }
+
+    /**
+     * Sets the column as downloadable
+     *
+     * @param bool $isdownloadable
+     * @return self
+     */
+    public function set_is_downloadable(bool $isdownloadable): self {
+        $this->isdownloadable = $isdownloadable;
+        return $this;
+    }
+
+    /**
+     * Return downloadable status of column
+     *
+     * @return bool
+     */
+    public function get_is_downloadable(): bool {
+        return $this->isdownloadable;
     }
 
     /**

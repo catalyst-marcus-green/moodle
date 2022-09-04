@@ -92,6 +92,15 @@ class custom_report_table extends base_report_table {
             return;
         }
 
+        // If we are downloading the report, remove columns as required.
+        if ($this->is_downloading()) {
+            foreach ($columns as $key => $column) {
+                if (in_array($column->get_unique_identifier(), $this->report->get_exclude_columns_for_download())) {
+                    unset($columns[$key]);
+                }
+            }
+        }
+
         // If we are aggregating any columns, we should group by the remaining ones.
         $aggregatedcolumns = array_filter($columns, static function(column $column): bool {
             return !empty($column->get_aggregation());
