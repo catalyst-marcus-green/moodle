@@ -12,6 +12,8 @@ Information provided here is intended especially for developers.
    remove columns from report download.
 * Moved `get_exclude_columns_for_download` method from system report to \local\report\base class, updated to
    use `get_is_downloadable` method from \local\report\column class.
+* Moved `manager::write_close` from  tablelib construct(&$table, $dataformat)
+  to start_table($sheettitle) to delay the checking of $SESSION mutation so columns can be excluded for download.
 
 === 4.3 ===
 

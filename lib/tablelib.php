@@ -2329,9 +2329,6 @@ class table_dataformat_export_format extends table_default_export_format_parent 
 
         // The dataformat export time to first byte could take a while to generate...
         set_time_limit(0);
-
-        // Close the session so that the users other tabs in the same session are not blocked.
-        \core\session\manager::write_close();
     }
 
     /**
@@ -2364,6 +2361,8 @@ class table_dataformat_export_format extends table_default_export_format_parent 
      */
     public function start_table($sheettitle) {
         $this->dataformat->set_sheettitle($sheettitle);
+        // Close the session so that the users other tabs in the same session are not blocked.
+        \core\session\manager::write_close();
     }
 
     /**
